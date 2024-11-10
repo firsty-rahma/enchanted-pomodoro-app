@@ -8,10 +8,28 @@
 </head>
 <body>
     <div class="container">
-
+        <h1>Pomodoro Timer</h1>
+        <div class="button-group" id="mode-buttons">
+            <button data-mode="pomodoro" class="button mode-button" id="pomodoro-button">Pomodoro</button>
+            <button data-mode="shortbreak" class="button mode-button" id="shortbreak-button">Short Break</button>
+            <button data-mode="longbreak" class="button mode-button" id="longbreak-button">Long Break</button>
+        </div>
+        <div class="clock">
+            <span id="clock-minutes">00</span>
+            <span class="separator">:</span>
+            <span id="clock-seconds">00</span>
+        </div>
+        <button class="main-button" data-action="start" id="clock-btn">
+            Start
+        </button>
     </div>
     <div class="container">
-
+        <h1>Task</h1>
     </div>
+    <div class="hidden">
+        <audio src="sound/pomodoro.mp3" data-sound="pomodoro"></audio>
+        <audio src="sound/shortbreak.mp3" data-sound="shortbreak"></audio>
+        <audio src="sound/longbreak.mp3" data-sound="longbreak"></audio>
+      </div>
 </body>
 </html>
