@@ -1,47 +1,105 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    height: 100vh;
-    align-items: center;
-    background-color: #f0f0f0;
-  }
-  .container {
-    width: 100%;
-    max-width: 350px;
-    text-align: center;
-    min-height: 300px;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    margin: 1vh;
-  }
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  height: 100vh;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+.container {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  min-height: 300px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  margin: 1vh;
+}
 
 .clock {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 5rem;
-    float: relative;
-    margin: 2vh;
-  }
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 5rem;
+  float: relative;
+  margin: 2vh;
+}
 
-  button {
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: none;
-    background-color: #444;
-    color: white;
-    border: 1px solid transparent;
-    margin: 0px;
-    border-radius: 4px;
-    padding: 2px 12px;
-  }
-  
-  button:disabled {
-    background-color: #b6b6b6;
-    color: rgb(62, 62, 62);
-  }
+.current-task {
+  margin: 0.5vh;
+  padding: 0.5vh;
+  padding-top: 10px;
+  font-size: 1.2rem;
+}
+
+.form-group {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: none;
+  background-color: #444;
+  color: white;
+  border: 1px solid transparent;
+  margin: 0px;
+  border-radius: 4px;
+  padding: 2px 12px;
+}
+
+button:disabled {
+  background-color: #b6b6b6;
+  color: rgb(62, 62, 62);
+}
+
+.main-button {
+  margin: 10px;
+  width: 100px;
+  height: 30px;
+}
+
+.mode-button.active {
+  border-color: #444;
+  background-color: white;
+  color: #444;
+}
+
+.input-group {
+  margin: 0 2.5vh 0 2.5vh;
+}
+
+.input-time-group {
+  display: inline-flex;
+  margin: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-size: 0.8rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+
