@@ -122,6 +122,11 @@ input[type="text"] {
   transition: opacity 0.3s ease;
 }
 
+.overlay-container.show {
+  display: flex;
+  opacity: 1;
+}
+
 .popup-box {
   background: #fff;
   padding: 24px;
@@ -134,3 +139,14 @@ input[type="text"] {
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
