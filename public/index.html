@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" />
+    <title>Pomodoro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> 
+  <div class="container">
+    <h1>Pomodoro Timer</h1>
+    <div class="button-group" id="mode-buttons">
+      <button data-mode="pomodoro" class="button mode-button" id="pomodoro-button">Pomodoro</button>
+      <button data-mode="shortbreak" class="button mode-button" id="shortbreak-button">Short Break</button>
+      <button data-mode="longbreak" class="button mode-button" id="longbreak-button">Long Break</button>
+    </div>
+    <div class="current-task"></div>
+    <div class="clock">
+      <span id="clock-minutes">00</span>
+      <span class="separator">:</span>
+      <span id="clock-seconds">00</span>
+    </div>
+    <button class="short-button" data-action="start" id="clock-btn">
+      Start
+    </button>
+    <button class="short-button" id="reset-btn">
+      Reset
+    </button>
+  </div>
+  <div class="container">
+    <h1>Task</h1>
+    <button class="long-button" id="add-popup-btn">Add Task</button>
+    <ul></ul>
+  </div>
+  <div class="overlay-container" id="add-popup-overlay">
+    <div class="popup-box">
+      <div class="form-group">
+        <input type="text" id="task-input" placeholder="Enter a new task" required>
+        <div class="input-time-group">
+          <div class="input-group">
+            <label for="pomodoro-input">Pomodoro</label>
+            <input type="number" id="pomodoro-input" min="1" max="45" value="10">
+          </div>
+          <div class="input-group">
+            <label for="shortbreak-input">Short Break</label>
+            <input type="number" id="shortbreak-input" min="1" max="15" value="5">
+          </div>
+          <div class="input-group">
+            <label for="longbreak-input">Long Break</label>
+            <input type="number" id="longbreak-input" min="1" max="20" value="10">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="longbreakInterval-input">Long Break Interval</label>
+          <input type="number" id="longbreakInterval-input" min="1" max="5" value="2">
+        </div>
+      </div>
+      <button class="short-button" id="save-button">Save</button>
+    </div>
+  </div>
+  <div class="hidden">
+    <audio src="/src/sound/pomodoro.mp3" data-sound="pomodoro"></audio>
+    <audio src="/src/sound/shortbreak.mp3" data-sound="shortbreak"></audio>
+    <audio src="/src/sound/longbreak.mp3" data-sound="longbreak"></audio>
+  </div>
+  <script type="module" src="/js/main.js"></script> 
+</body> 
+</html>
