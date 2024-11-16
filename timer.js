@@ -1,6 +1,11 @@
+import { storeItem, storeData, getLatestData } from "./storage.js";
+
 export class Timer {
     constructor() {
         this.timer = {
+            id: "",
+            date: "",
+            task_name: "",
             pomodoro: 0,
             shortbreak: 0,
             longbreak: 0,
@@ -11,6 +16,7 @@ export class Timer {
 
         this.addPopupBtn = document.getElementById('add-popup-btn');
         this.addPopupOverlay = document.getElementById('add-popup-overlay');
+        this.closePopupBtn = document.getElementById('close-popup-button');
         
         this.saveBtn = document.getElementById('save-button');
         this.pomoInput = document.getElementById('pomodoro-input');
@@ -18,17 +24,20 @@ export class Timer {
         this.longbrInput = document.getElementById('longbreak-input');
         this.longbrIntInput = document.getElementById('longbreakInterval-input');
 
+        this.tasksList = document.getElementById('task_list');
+
         this.taskInput = document.getElementById('task-input');
         this.mainBtn = document.getElementById('clock-btn');
         this.resetBtn = document.getElementById('reset-btn');
-        this.buttonSound = new Audio('/src/sound/button.mp3');
+        this.buttonSound = new Audio('/public/sound/button.mp3');
         this.modeButtons = document.getElementById('mode-buttons');
 
         this.init();
     }
 
     init(){
-        
+        window.addEventListener('load', this.loadLatestTasks());
+
         this.mainBtn.addEventListener('click', () => {
             this.buttonSound.play();
             const {action} = this.mainBtn.dataset;
@@ -55,13 +64,23 @@ export class Timer {
             if (this.taskInput.value == '' || this.taskInput.value == null) {
                 alert("Please add the task");
             } else {
+                let latestTasks = getLatestData();
+
                 const curTask = document.querySelector('.current-task');
                 curTask.textContent = this.taskInput.value;
 
+                this.timer.task_name = this.taskInput.value;
+                this.timer.id = Math.floor(Math.random() * Date.now());
+                this.timer.date = new Date();
                 this.timer.pomodoro = this.pomoInput.valueAsNumber;
                 this.timer.shortbreak= this.shortbrInput.valueAsNumber;
                 this.timer.longbreak = this.longbrInput.valueAsNumber;
                 this.timer.longbreakInterval = this.longbrIntInput.valueAsNumber;
+
+                storeItem(this.timer);
+                latestTasks.unshift(this.timer);
+                storeData(latestTasks);
+
                 this.addPopupOverlay.classList.toggle('show');
                 this.switchMode('pomodoro');
             }
@@ -81,6 +100,25 @@ export class Timer {
             this.timer.longbreakInterval = 0;
             this.switchMode('pomodoro');
         });
+
+        this.closePopupBtn.addEventListener('click', () => {
+            this.addPopupOverlay.classList.toggle('show');
+        });
+    }
+
+    loadLatestTasks() {
+        const latestTasks = getLatestData();
+        if (latestTasks) {
+            for (const task in latestTasks) {
+            console.log(latestTasks[task]);
+            }
+        } else {
+            console.log("No data");
+        }
+
+    }
+    renderTask(){
+
     }
 
     getRemainingTime(endTime) {
@@ -138,7 +176,7 @@ export class Timer {
         this.mainBtn.classList.add('active');
 
         this.resetBtn.disabled = true;
-        this.saveBtn.disabled = true;
+        this.addPopupBtn.disabled = true;
     
         this.interval = setInterval(() => {
             this.timer.remainingTime = this.getRemainingTime(endTime);
@@ -174,6 +212,6 @@ export class Timer {
         this.mainBtn.classList.remove('active');
 
         this.resetBtn.disabled = false;
-        this.saveBtn.disabled = false;
+        this.addPopupBtn.disabled = false;
     }
 }
