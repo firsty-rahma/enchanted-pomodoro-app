@@ -1,4 +1,4 @@
-import { storeItem, storeData, getLatestData } from "./storage.js";
+import { storeItem, storeData, getLatestData } from "/storage.js";
 
 export class Timer {
     constructor() {
@@ -24,12 +24,12 @@ export class Timer {
         this.longbrInput = document.getElementById('longbreak-input');
         this.longbrIntInput = document.getElementById('longbreakInterval-input');
 
-        this.tasksList = document.getElementById('task_list');
+        this.tasksList = document.getElementById('task-list');
 
         this.taskInput = document.getElementById('task-input');
         this.mainBtn = document.getElementById('clock-btn');
         this.resetBtn = document.getElementById('reset-btn');
-        this.buttonSound = new Audio('/public/sound/button.mp3');
+        this.buttonSound = new Audio('/sound/button.mp3');
         this.modeButtons = document.getElementById('mode-buttons');
 
         this.init();
@@ -64,25 +64,7 @@ export class Timer {
             if (this.taskInput.value == '' || this.taskInput.value == null) {
                 alert("Please add the task");
             } else {
-                let latestTasks = getLatestData();
-
-                const curTask = document.querySelector('.current-task');
-                curTask.textContent = this.taskInput.value;
-
-                this.timer.task_name = this.taskInput.value;
-                this.timer.id = Math.floor(Math.random() * Date.now());
-                this.timer.date = new Date();
-                this.timer.pomodoro = this.pomoInput.valueAsNumber;
-                this.timer.shortbreak= this.shortbrInput.valueAsNumber;
-                this.timer.longbreak = this.longbrInput.valueAsNumber;
-                this.timer.longbreakInterval = this.longbrIntInput.valueAsNumber;
-
-                storeItem(this.timer);
-                latestTasks.unshift(this.timer);
-                storeData(latestTasks);
-
-                this.addPopupOverlay.classList.toggle('show');
-                this.switchMode('pomodoro');
+                this.saveTasks();
             }
         });
 
@@ -106,19 +88,59 @@ export class Timer {
         });
     }
 
+    saveTasks() {
+        let latestTasks = getLatestData();
+        
+        const curTask = document.querySelector('.current-task');
+        curTask.textContent = this.taskInput.value;
+
+        this.timer.task_name = this.taskInput.value;
+        this.timer.id = Math.floor(Math.random() * Date.now());
+        this.timer.date = new Date();
+        this.timer.pomodoro = this.pomoInput.valueAsNumber;
+        this.timer.shortbreak= this.shortbrInput.valueAsNumber;
+        this.timer.longbreak = this.longbrInput.valueAsNumber;
+        this.timer.longbreakInterval = this.longbrIntInput.valueAsNumber;
+
+        storeItem(this.timer);
+        latestTasks.push(this.timer);
+
+        this.renderTask(this.timer);
+
+        storeData(latestTasks);
+        this.addPopupOverlay.classList.toggle('show');
+        this.switchMode('pomodoro');
+    }
+
     loadLatestTasks() {
         const latestTasks = getLatestData();
         if (latestTasks) {
             for (const task in latestTasks) {
-            console.log(latestTasks[task]);
+            this.renderTask(latestTasks[task]);
             }
         } else {
             console.log("No data");
         }
 
     }
-    renderTask(){
 
+    renderTask(task){
+        const taskItem = document.createElement("li");
+        taskItem.classList.add('task-item');
+
+        const taskLabel = document.createElement("div");
+        const nameLabel = document.createElement("span");
+        nameLabel.innerHTML = task.task_name;
+        nameLabel.classList.add('task-name-label');
+
+        const focusLabel = document.createElement("span");
+        focusLabel.innerHTML = `${task.pomodoro} minutes`;
+        focusLabel.classList.add('task-focus-label');
+
+        taskLabel.appendChild(nameLabel);
+        taskLabel.appendChild(focusLabel);
+        taskItem.appendChild(taskLabel);
+        this.tasksList.appendChild(taskItem);
     }
 
     getRemainingTime(endTime) {

@@ -1,3 +1,3 @@
-import { Timer } from "./timer.js";
+import { Timer } from "/timer.js";
 
 const app = new Timer();

@@ -29,13 +29,13 @@
     </button>
   </div>
   <div class="container">
-    <h1>Task</h1>
+    <h1>Tasks Record</h1>
     <button class="long-button" id="add-popup-btn">Add Task</button>
     <ul id="task-list"></ul>
   </div>
   <div class="overlay-container" id="add-popup-overlay">
     <div class="popup-box">
-      <button class="close-popup-button" id="close-popup-button"></button>
+      <button class="close-popup-button" id="close-popup-button">&#x2716;</button>
       <h4>Add Task</h4>
       <div class="form-group">
         <input type="text" id="task-input" placeholder="Enter a new task" required>
@@ -62,10 +62,10 @@
     </div>
   </div>
   <div class="hidden">
-    <audio src="/public/sound/pomodoro.mp3" data-sound="pomodoro"></audio>
-    <audio src="/public/sound/shortbreak.mp3" data-sound="shortbreak"></audio>
-    <audio src="/public/sound/longbreak.mp3" data-sound="longbreak"></audio>
+    <audio src="sound/pomodoro.mp3" data-sound="pomodoro"></audio>
+    <audio src="sound/shortbreak.mp3" data-sound="shortbreak"></audio>
+    <audio src="sound/longbreak.mp3" data-sound="longbreak"></audio>
   </div>
-  <script type="module" src="/js/main.js"></script> 
+  <script type="module" src="main.js"></script> 
 </body> 
 </html>

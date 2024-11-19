@@ -4,7 +4,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  height: 95vh;
+  height: 80vh;
   align-items: center;
   background-color: #f0f0f0;
 }
@@ -151,8 +151,29 @@ input[type="text"] {
   margin-left: 95%;
 }
 
-.close-popup-button button:after {
-  content: '\2716';
+#task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: o;
+}
+
+.task-item {
+  background-color: #cdcdcd;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  display: flex;
+}
+
+.task-name-label {
+  font-size: 15px;
+  margin-right: 5em;
+}
+
+.task-focus-label {
+  font-size: 15px;
+  margin-left: 5em;
 }
 
 @keyframes fadeInUp {
