@@ -11,9 +11,9 @@
   <div class="container">
     <h1>Pomodoro Timer</h1>
     <div class="button-group" id="mode-buttons">
-      <button data-mode="pomodoro" class="button mode-button" id="pomodoro-button">Pomodoro</button>
-      <button data-mode="shortbreak" class="button mode-button" id="shortbreak-button">Short Break</button>
-      <button data-mode="longbreak" class="button mode-button" id="longbreak-button">Long Break</button>
+      <button data-mode="pomodoro" class="button mode-button main-button" id="pomodoro-button">Pomodoro</button>
+      <button data-mode="shortbreak" class="button mode-button main-button" id="shortbreak-button">Short Break</button>
+      <button data-mode="longbreak" class="button mode-button main-button" id="longbreak-button">Long Break</button>
     </div>
     <div class="current-task"></div>
     <div class="clock">
@@ -21,21 +21,21 @@
       <span class="separator">:</span>
       <span id="clock-seconds">00</span>
     </div>
-    <button class="short-button" data-action="start" id="clock-btn">
+    <button class="short-button main-button" data-action="start" id="clock-btn">
       Start
     </button>
-    <button class="short-button" id="reset-btn">
+    <button class="short-button main-button" id="reset-btn">
       Reset
     </button>
   </div>
   <div class="container">
     <h1>Tasks Record</h1>
-    <button class="long-button" id="add-popup-btn">Add Task</button>
+    <button class="long-button main-button" id="add-popup-btn">Add Task</button>
     <ul id="task-list"></ul>
   </div>
   <div class="overlay-container" id="add-popup-overlay">
     <div class="popup-box">
-      <button class="close-popup-button" id="close-popup-button">&#x2716;</button>
+      <button class="close-popup-button main-button" id="close-popup-button">&#x2716;</button>
       <h4>Add Task</h4>
       <div class="form-group">
         <input type="text" id="task-input" placeholder="Enter a new task" required>
@@ -58,7 +58,7 @@
           <input type="number" id="longbreakInterval-input" min="1" max="5" value="2">
         </div>
       </div>
-      <button class="short-button" id="save-button">Save</button>
+      <button class="short-button main-button" id="save-button">Save</button>
     </div>
   </div>
   <div class="hidden">
