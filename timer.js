@@ -27,7 +27,7 @@ export class Timer {
         this.tasksList = document.getElementById('task-list');
 
         this.taskInput = document.getElementById('task-input');
-        this.mainBtn = document.getElementById('clock-btn');
+        this.startBtn = document.getElementById('start-btn');
         this.resetBtn = document.getElementById('reset-btn');
         this.buttonSound = new Audio('/sound/button.mp3');
         this.modeButtons = document.getElementById('mode-buttons');
@@ -38,9 +38,9 @@ export class Timer {
     init(){
         window.addEventListener('load', this.loadLatestTasks());
 
-        this.mainBtn.addEventListener('click', () => {
+        this.startBtn.addEventListener('click', () => {
             this.buttonSound.play();
-            const {action} = this.mainBtn.dataset;
+            const {action} = this.startBtn.dataset;
             if (action == 'start') {
                 this.startTimer();
             } else {
@@ -193,9 +193,9 @@ export class Timer {
         if(this.timer.mode === 'pomodoro') this.timer.sessions++;
         console.log(this.timer.sessions);
 
-        this.mainBtn.dataset.action = 'stop';
-        this.mainBtn.textContent = 'Stop';
-        this.mainBtn.classList.add('active');
+        this.startBtn.dataset.action = 'stop';
+        this.startBtn.textContent = 'Stop';
+        this.startBtn.classList.add('active');
 
         this.resetBtn.disabled = true;
         this.addPopupBtn.disabled = true;
@@ -229,9 +229,9 @@ export class Timer {
     stopTimer() {
         clearInterval(this.interval);
     
-        this.mainBtn.dataset.action = 'start';
-        this.mainBtn.textContent = 'Start';
-        this.mainBtn.classList.remove('active');
+        this.startBtn.dataset.action = 'start';
+        this.startBtn.textContent = 'Start';
+        this.startBtn.classList.remove('active');
 
         this.resetBtn.disabled = false;
         this.addPopupBtn.disabled = false;
